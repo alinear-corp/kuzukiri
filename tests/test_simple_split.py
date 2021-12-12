@@ -5,7 +5,7 @@ import kuzukiri
 
 class TestSimpleSplit(unittest.TestCase):
     def setUp(self) -> None:
-        self.splitter = kuzukiri.Splitter()
+        self.segmenter = kuzukiri.Segmenter()
 
     def test_split_line_normal_text(self):
         test_cases = [
@@ -36,7 +36,7 @@ class TestSimpleSplit(unittest.TestCase):
             ),
         ]
         for example, expected in test_cases:
-            actual = self.splitter.split(example)
+            actual = self.segmenter.split(example)
             self.assertEqual(actual, expected)
 
     def test_split_line_with_parentheses(self):
@@ -68,13 +68,13 @@ class TestSimpleSplit(unittest.TestCase):
             ),
         ]
         for example, expected in test_cases:
-            actual = self.splitter.split(example)
+            actual = self.segmenter.split(example)
             self.assertEqual(actual, expected)
 
     def test_split_max_length(self):
         example = "デフォルトでは1文が1000文字を超えた時点で強制的に文を切り分けます。"
         example += "@" * 2000
-        actual = self.splitter.split(example)
+        actual = self.segmenter.split(example)
         expected = [
             "デフォルトでは1文が1000文字を超えた時点で強制的に文を切り分けます。",
             "@" * 1000,

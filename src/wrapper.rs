@@ -1,15 +1,15 @@
 use std::collections::{HashMap, HashSet};
 use pyo3::prelude::*;
-use crate::splitter::Splitter;
+use crate::splitter::Segmenter;
 
 
-#[pyclass(name="Splitter")]
-pub struct PySplitter {
-    _splitter: Splitter,
+#[pyclass(name="Segmenter")]
+pub struct PySegmenter {
+    _segmenter: Segmenter,
 }
 
 #[pymethods]
-impl PySplitter {
+impl PySegmenter {
     #[new()]
     fn new(
         terminals: Option<HashSet<char>>,
@@ -17,8 +17,8 @@ impl PySplitter {
         force: Option<HashSet<char>>,
         max_buf_length: Option<usize>,
     ) -> Self {
-        PySplitter {
-            _splitter: Splitter::new(
+        PySegmenter {
+            _segmenter: Segmenter::new(
                 terminals,
                 parentheses,
                 force,
@@ -28,6 +28,6 @@ impl PySplitter {
     }
 
     fn split(&self, text: String) -> Vec<String> {
-        self._splitter.split(text)
+        self._segmenter.split(text)
     }
 }

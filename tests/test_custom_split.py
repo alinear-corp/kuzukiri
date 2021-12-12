@@ -7,7 +7,7 @@ class TestCustomSplit(unittest.TestCase):
     def setUp(self) -> None:
         self.custom_terminals = {"."}
         self.custom_parens = {"(": ")"}
-        self.splitter = kuzukiri.Splitter(
+        self.segmenter = kuzukiri.Segmenter(
             self.custom_terminals,
             self.custom_parens,
             force=set("\n"),
@@ -32,7 +32,7 @@ class TestCustomSplit(unittest.TestCase):
             ),
         ]
         for example, expected in test_cases:
-            actual = self.splitter.split(example)
+            actual = self.segmenter.split(example)
             self.assertEqual(actual, expected)
 
     def test_split_line_with_parentheses(self):
@@ -54,7 +54,7 @@ class TestCustomSplit(unittest.TestCase):
             ),
         ]
         for example, expected in test_cases:
-            actual = self.splitter.split(example)
+            actual = self.segmenter.split(example)
             self.assertEqual(actual, expected)
 
     def test_force_split(self):
@@ -75,7 +75,7 @@ class TestCustomSplit(unittest.TestCase):
             ),
         ]
         for example, expected in test_cases:
-            actual = self.splitter.split(example)
+            actual = self.segmenter.split(example)
             self.assertEqual(actual, expected)
 
 

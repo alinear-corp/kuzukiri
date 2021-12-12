@@ -1,14 +1,14 @@
 use std::collections::{HashMap, HashSet};
 
 
-pub struct Splitter {
+pub struct Segmenter {
     terminals: HashSet<char>,
     parentheses: HashMap<char, char>,
     force: HashSet<char>,
     max_buf_length: usize,
 }
 
-impl Splitter {
+impl Segmenter {
     pub fn new(
         terminals: Option<HashSet<char>>,
         parentheses: Option<HashMap<char, char>>,
@@ -46,7 +46,7 @@ impl Splitter {
         } else {
             1000
         };
-        Splitter {
+        Segmenter {
             terminals,
             parentheses,
             force,
