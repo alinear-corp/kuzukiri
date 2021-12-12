@@ -3,7 +3,7 @@ import unittest
 import kuzukiri
 
 
-class MyTestCase(unittest.TestCase):
+class TestSimpleSplit(unittest.TestCase):
     def setUp(self) -> None:
         self.splitter = kuzukiri.Splitter()
 
