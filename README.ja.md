@@ -33,3 +33,7 @@ print(sentences)  # => ['これはテストです。', '文分割します。']
 
 ## ライセンス
 MIT
+
+## 依存関係
+* RustのコードをPythonから呼び出すために、 [PyO3](https://pyo3.rs) を利用しています。
+* unicode正規化の処理は [unicode_normalization crate](https://docs.rs/unicode-normalization/latest/unicode_normalization/index.html) を利用しています。

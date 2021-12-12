@@ -33,3 +33,7 @@ For details, see `examples` and `tests` directories.
 
 ## License
 MIT
+
+## Dependencies
+* [PyO3](https://pyo3.rs) : to compile rust code for python.
+* [unicode_normalization crate](https://docs.rs/unicode-normalization/latest/unicode_normalization/index.html) : for NFKC normalization
