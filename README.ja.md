@@ -10,5 +10,13 @@
   * ルールがシンプルなので入力から結果を予測可能
 * Rustで書かれているため高速 
 
+## インストール
+### ソースコードからインストールする場合
+
+```bash
+pip install setuptools-rust
+python setup.py install
+```
+
 ## ライセンス
 MIT

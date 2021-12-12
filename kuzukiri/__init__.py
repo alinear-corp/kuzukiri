@@ -1,1 +1,1 @@
-from .kuzukiri import *
+from .kuzukiri import *  # noqa
