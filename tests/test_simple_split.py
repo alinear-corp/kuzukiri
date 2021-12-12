@@ -24,6 +24,15 @@ class MyTestCase(unittest.TestCase):
                     "どうでしょうか．",
                 ]
             ),
+            (
+                "デフォルトでは改行記号は端なる文末記号のひとつです。したがって改行は文の区切りと\nみなします。改行記号は除去されません。",
+                [
+                    "デフォルトでは改行記号は端なる文末記号のひとつです。",
+                    "したがって改行は文の区切りと\n",
+                    "みなします。",
+                    "改行記号は除去されません。",
+                ]
+            ),
         ]
         for example, expected in test_cases:
             actual = self.splitter.split(example)
@@ -49,6 +58,12 @@ class MyTestCase(unittest.TestCase):
                     "会話文2文「こんにちは。」「ごきげんよう。」は分割されない。",
                     "ここで分割。",
                 ],
+            ),
+            (
+                "括弧の中に改行がある場合は「文の\n区切り」とみなしません。",
+                [
+                    "括弧の中に改行がある場合は「文の\n区切り」とみなしません。",
+                ]
             ),
         ]
         for example, expected in test_cases:
