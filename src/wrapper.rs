@@ -1,3 +1,4 @@
+use std::collections::{HashMap, HashSet};
 use pyo3::prelude::*;
 use crate::splitter::Splitter;
 
@@ -9,10 +10,13 @@ pub struct PySplitter {
 
 #[pymethods]
 impl PySplitter {
-    #[new]
-    fn new() -> Self {
+    #[new()]
+    fn new(
+        terminals: Option<HashSet<char>>,
+        parentheses: Option<HashMap<char, char>>
+    ) -> Self {
         PySplitter {
-            _splitter: Splitter::new(),
+            _splitter: Splitter::new(terminals, parentheses),
         }
     }
 

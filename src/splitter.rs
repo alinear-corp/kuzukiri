@@ -3,26 +3,35 @@ use std::collections::{HashMap, HashSet};
 
 pub struct Splitter {
     terminals: HashSet<char>,
-    parens: HashMap<char, char>,
+    parentheses: HashMap<char, char>,
 }
 
 impl Splitter {
-    pub fn new() -> Self {
-        let terminals: HashSet<char> = vec! [
-            '。', '、', '．', '，', '！', '？', '\n',
-        ].into_iter().collect();
-
-        let parens: HashMap<char, char> = vec![
-            ('「', '」'),
-            ('『', '』'),
-            ('（', '）'),
-            ('［', '］'),
-            ('【', '】'),
-        ].into_iter().collect();
-
+    pub fn new(
+        terminals: Option<HashSet<char>>,
+        parentheses: Option<HashMap<char, char>>
+    ) -> Self {
+        let terminals = if let Some(ts) = terminals {
+            ts
+        } else {
+            vec! [
+                '。', '、', '．', '，', '！', '？', '\n',
+            ].into_iter().collect()
+        };
+        let parens = if let Some(ps) = parentheses {
+            ps
+        } else {
+            vec![
+                ('「', '」'),
+                ('『', '』'),
+                ('（', '）'),
+                ('［', '］'),
+                ('【', '】'),
+            ].into_iter().collect()
+        };
         Splitter {
             terminals,
-            parens
+            parentheses: parens,
         }
     }
 
@@ -34,7 +43,7 @@ impl Splitter {
         for c in text.chars() {
             buf.push(c);
 
-            if let Some(t) = self.parens.get(&c) {
+            if let Some(t) = self.parentheses.get(&c) {
                 waiting_stack.push(t.clone());
             } else if let Some(d) = waiting_stack.last() {
                 if c == *d {
