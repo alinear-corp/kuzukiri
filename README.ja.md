@@ -18,5 +18,18 @@ pip install setuptools-rust
 python setup.py install
 ```
 
+## 使い方
+
+```python
+import kuzukiri
+
+segmenter = kuzukiri.Segmenter()
+text = "これはテストです。文分割します。"
+sentences = segmenter.split(text)
+print(sentences)  # => ['これはテストです。', '文分割します。']
+```
+
+詳細は `examples` ディレクトリまたは `tests` ディレクトリを参照してください。
+
 ## ライセンス
 MIT
