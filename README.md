@@ -1,6 +1,7 @@
+[日本語](https://github.com/alinear-corp/kuzukiri/blob/main/README.ja.md)
+
 # kuzukiri
 A simple text segmenter
-[日本語](https://github.com/alinear-corp/kuzukiri/blob/main/README.ja.md)
 
 ## What's this?
 This is a python library for text segmentation of Japanese text.
