@@ -1,4 +1,5 @@
 use std::collections::{HashMap, HashSet};
+use unicode_normalization::UnicodeNormalization;
 
 
 pub struct Segmenter {
@@ -89,5 +90,19 @@ impl Segmenter {
         }
 
         sentences
+    }
+
+    pub fn split_with_nfkc_normalize(&self, text: String) -> Vec<String>{
+        // TODO: write more efficient way
+        let sentences = self.split(text);
+        let mut normalized: Vec<String> = Vec::with_capacity(sentences.len());
+        for sentence in sentences.into_iter() {
+            let n: String = sentence.nfkc().collect();
+            let n = n.trim().into();
+            if n != "" {
+                normalized.push(n);
+            }
+        }
+        normalized
     }
 }

@@ -30,4 +30,8 @@ impl PySegmenter {
     fn split(&self, text: String) -> Vec<String> {
         self._segmenter.split(text)
     }
+
+    fn split_with_norm(&self, text: String) -> Vec<String> {
+        self._segmenter.split_with_nfkc_normalize(text)
+    }
 }
