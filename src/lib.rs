@@ -1,6 +1,6 @@
 use pyo3::prelude::*;
 
-mod splitter;
+mod segmenter;
 mod wrapper;
 
 

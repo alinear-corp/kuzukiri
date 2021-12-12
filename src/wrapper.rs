@@ -1,6 +1,6 @@
 use std::collections::{HashMap, HashSet};
 use pyo3::prelude::*;
-use crate::splitter::Segmenter;
+use crate::segmenter::Segmenter;
 
 
 #[pyclass(name="Segmenter")]
