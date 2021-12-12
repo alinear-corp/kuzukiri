@@ -4,12 +4,14 @@ use std::collections::{HashMap, HashSet};
 pub struct Splitter {
     terminals: HashSet<char>,
     parentheses: HashMap<char, char>,
+    max_buf_length: usize,
 }
 
 impl Splitter {
     pub fn new(
         terminals: Option<HashSet<char>>,
-        parentheses: Option<HashMap<char, char>>
+        parentheses: Option<HashMap<char, char>>,
+        max_buf_length: Option<usize>,
     ) -> Self {
         let terminals = if let Some(ts) = terminals {
             ts
@@ -18,7 +20,7 @@ impl Splitter {
                 '。', '．', '，', '！', '？', '\n',
             ].into_iter().collect()
         };
-        let parens = if let Some(ps) = parentheses {
+        let parentheses = if let Some(ps) = parentheses {
             ps
         } else {
             vec![
@@ -29,9 +31,15 @@ impl Splitter {
                 ('【', '】'),
             ].into_iter().collect()
         };
+        let max_buf_length = if let Some(length) = max_buf_length {
+            length
+        } else {
+            1000
+        };
         Splitter {
             terminals,
-            parentheses: parens,
+            parentheses,
+            max_buf_length,
         }
     }
 
@@ -52,6 +60,12 @@ impl Splitter {
             } else if self.terminals.contains(&c) {
                 sentences.push(buf.into_iter().collect());
                 buf = vec![];
+            }
+
+            if buf.len() >= self.max_buf_length {
+                sentences.push(buf.into_iter().collect());
+                buf = vec![];
+                waiting_stack.clear()
             }
         }
 

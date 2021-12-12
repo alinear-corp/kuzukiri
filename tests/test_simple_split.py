@@ -71,6 +71,17 @@ class TestSimpleSplit(unittest.TestCase):
             actual = self.splitter.split(example)
             self.assertEqual(actual, expected)
 
+    def test_split_max_length(self):
+        example = "デフォルトでは1文が1000文字を超えた時点で強制的に文を切り分けます。"
+        example += "@" * 2000
+        actual = self.splitter.split(example)
+        expected = [
+            "デフォルトでは1文が1000文字を超えた時点で強制的に文を切り分けます。",
+            "@" * 1000,
+            "@" * 1000,
+        ]
+        self.assertEqual(actual, expected)
+
 
 if __name__ == '__main__':
     unittest.main()

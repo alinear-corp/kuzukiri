@@ -13,10 +13,15 @@ impl PySplitter {
     #[new()]
     fn new(
         terminals: Option<HashSet<char>>,
-        parentheses: Option<HashMap<char, char>>
+        parentheses: Option<HashMap<char, char>>,
+        max_buf_length: Option<usize>,
     ) -> Self {
         PySplitter {
-            _splitter: Splitter::new(terminals, parentheses),
+            _splitter: Splitter::new(
+                terminals,
+                parentheses,
+                max_buf_length,
+            ),
         }
     }
 
