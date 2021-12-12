@@ -15,7 +15,7 @@ impl Splitter {
             ts
         } else {
             vec! [
-                '。', '、', '．', '，', '！', '？', '\n',
+                '。', '．', '，', '！', '？', '\n',
             ].into_iter().collect()
         };
         let parens = if let Some(ps) = parentheses {
