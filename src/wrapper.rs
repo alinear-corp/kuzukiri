@@ -1,5 +1,6 @@
 use std::collections::{HashMap, HashSet};
 use pyo3::prelude::*;
+use crate::normalizers::{Normalizer, NormalizerPipeline};
 use crate::segmenter::Segmenter;
 
 
@@ -32,6 +33,14 @@ impl PySegmenter {
     }
 
     fn split_with_norm(&self, text: String) -> Vec<String> {
-        self._segmenter.split_with_nfkc_normalize(text)
+        let sentences = self._segmenter.split(text);
+        let mut normalized: Vec<String> = Vec::with_capacity(sentences.len());
+        for sentence in sentences.into_iter() {
+            let n = NormalizerPipeline::normalize(sentence);
+            if n != "" {
+                normalized.push(n);
+            }
+        }
+        normalized
     }
 }
