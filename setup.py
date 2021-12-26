@@ -25,5 +25,5 @@ setup(
         "Japanese", "Preprocessing",
         "Text Processing",
     ],
-    platforms=["Windows", "Linux"],
+    platforms=["Windows", "Linux", 'macOS'],
 )
