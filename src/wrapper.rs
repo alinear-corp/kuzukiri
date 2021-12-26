@@ -5,21 +5,21 @@ use crate::segmenter::Segmenter;
 
 
 /// Text Segmentation Class
+///
+/// Args:
+///     terminals (Optional[set[str]]): a set of terminal characters (Default: {'。', '．', '，', '！', '？', '\n'})
+///     parentheses (Optional[map[str, str]]): pairs of parentheses (Default: {'「': '」', '『': '』', '（': '）', '［': '］', '【': '】'})
+///     force (Optional[set[str]]): a set of terminal characters, those ignore parentheses (Default: {})
+///     max_buf_length (Optional[int]): max buffer size (Default: 1000)
 #[pyclass(name="Segmenter")]
+#[pyo3(text_signature="(terminals, parentheses, force, max_buf_length)")]
 pub struct PySegmenter {
     _segmenter: Segmenter,
 }
 
 #[pymethods]
 impl PySegmenter {
-    /// Create a new Segmenter instance.
-    ///
-    /// Args:
-    ///     terminals (Optional[set[str]]): a set of terminal characters (Default: {'。', '．', '，', '！', '？', '\n'})
-    ///     parentheses (Optional[map[str, str]]): pairs of parentheses (Default: {'「': '」', '『': '』', '（': '）', '［': '］', '【': '】'})
-    ///     force (Optional[set[str]]): a set of terminal characters, those ignore parentheses (Default: {})
-    ///     max_buf_length (Optional[int]): max buffer size (Default: 1000)
-    #[new()]
+    #[new]
     fn new(
         terminals: Option<HashSet<char>>,
         parentheses: Option<HashMap<char, char>>,
@@ -42,6 +42,7 @@ impl PySegmenter {
     ///     text (str) : target text
     /// Returns:
     ///     List[str] : list of segmented texts
+    #[pyo3(text_signature="(self, text)")]
     fn split(&self, text: String) -> Vec<String> {
         self._segmenter.split(text)
     }
@@ -54,6 +55,7 @@ impl PySegmenter {
     ///     text (str) : target text
     /// Returns:
     ///     List[str] : list of segmented texts
+    #[pyo3(text_signature="(self, text)")]
     fn split_with_norm(&self, text: String) -> Vec<String> {
         let sentences = self._segmenter.split(text);
         let mut normalized: Vec<String> = Vec::with_capacity(sentences.len());
