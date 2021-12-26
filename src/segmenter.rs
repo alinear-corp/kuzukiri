@@ -1,4 +1,5 @@
 use std::collections::{HashMap, HashSet};
+use crate::sentence::Sentence;
 
 
 pub struct Segmenter {
@@ -54,8 +55,8 @@ impl Segmenter {
         }
     }
 
-    pub fn split(&self, text: String) -> Vec<String> {
-        let mut sentences: Vec<String> = vec![];
+    pub fn split(&self, text: String) -> Vec<Sentence> {
+        let mut sentences: Vec<Sentence> = vec![];
         let mut buf: Vec<char> = vec![];
         let mut waiting_stack: Vec<char> = vec![];
 

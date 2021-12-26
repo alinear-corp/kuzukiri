@@ -1,13 +1,14 @@
 use unicode_normalization::UnicodeNormalization;
+use crate::sentence::Sentence;
 
 pub trait Normalizer {
-    fn normalize(text: String) -> String;
+    fn normalize(text: Sentence) -> Sentence;
 }
 
 pub struct TrimNormalizer;
 impl Normalizer for TrimNormalizer {
-    fn normalize(text: String) -> String {
-        String::from(text.trim())
+    fn normalize(text: Sentence) -> Sentence {
+        Sentence::from(text.trim())
     }
 }
 
@@ -15,7 +16,7 @@ pub struct NFKCNormalizer;
 
 impl Normalizer for NFKCNormalizer
 {
-    fn normalize(text: String) -> String {
+    fn normalize(text: Sentence) -> Sentence {
         text.nfkc().collect()
     }
 }
@@ -23,7 +24,7 @@ impl Normalizer for NFKCNormalizer
 pub struct NormalizerPipeline;
 impl Normalizer for NormalizerPipeline
 {
-    fn normalize(text: String) -> String {
+    fn normalize(text: Sentence) -> Sentence {
         let text = NFKCNormalizer::normalize(text);
         let text = TrimNormalizer::normalize(text);
         text

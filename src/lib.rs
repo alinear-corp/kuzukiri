@@ -1,5 +1,6 @@
 use pyo3::prelude::*;
 
+mod sentence;
 mod normalizers;
 mod segmenter;
 mod wrapper;
