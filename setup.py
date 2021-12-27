@@ -1,10 +1,12 @@
+import os
+
 from setuptools import setup
 from setuptools_rust import Binding, RustExtension
 
 # reference: https://github.com/PyO3/setuptools-rust#setup
 setup(
     name="kuzukiri",
-    version="0.1.0",
+    version="0.1.1",
     rust_extensions=[RustExtension("kuzukiri.kuzukiri", binding=Binding.PyO3)],
     packages=["kuzukiri"],
     zip_safe=False,
@@ -26,4 +28,11 @@ setup(
         "Text Processing",
     ],
     platforms=["Windows", "Linux", 'macOS'],
+    long_description=open(
+        os.path.join(
+            os.path.dirname(__file__),
+            "README.md",
+        ), encoding="utf-8",
+    ).read(),
+    long_description_content_type="text/markdown",
 )
