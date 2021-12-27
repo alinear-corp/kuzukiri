@@ -13,6 +13,12 @@ This is a python library for text segmentation of Japanese text.
 * comparably fast. It's written in rust-lang.
 
 ## Install
+### from PyPI
+
+```bash
+pip install kuzukiri
+```
+
 ### from source code
 
 ```bash
