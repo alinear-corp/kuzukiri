@@ -2,3 +2,4 @@ setuptools-rust==1.1.2
 pytest==6.2.5
 pdoc3==0.10.0
 twine==3.7.1
+wheel==0.37.1
