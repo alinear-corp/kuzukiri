@@ -20,7 +20,7 @@ impl Segmenter {
             ts
         } else {
             vec! [
-                '。', '．', '，', '！', '？', '\n',
+                '。', '．', '！', '？', '\n',
             ].into_iter().collect()
         };
         let parentheses = if let Some(ps) = parentheses {
