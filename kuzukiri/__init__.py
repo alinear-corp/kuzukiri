@@ -16,7 +16,7 @@ print(sentences)  # => ['これはテストです。', '文分割します。']
 from .kuzukiri import *  # noqa
 
 __copyright__ = 'Copyright (C) ALINEAR Corporation'
-__version__ = '0.1.2'
+__version__ = '0.1.3'
 __license__ = 'MIT'
 __author__ = "ALINEAR Corporation"
 __url__ = "https://github.com/alinear-corp/kuzukiri"

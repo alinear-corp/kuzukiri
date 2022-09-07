@@ -7,7 +7,7 @@ use crate::segmenter::Segmenter;
 /// Text Segmentation Class
 ///
 /// Args:
-///     terminals (Optional[set[str]]): a set of terminal characters (Default: {'。', '．', '，', '！', '？', '\n'})
+///     terminals (Optional[set[str]]): a set of terminal characters (Default: {'。', '．', '！', '？', '\n'})
 ///     parentheses (Optional[map[str, str]]): pairs of parentheses (Default: {'「': '」', '『': '』', '（': '）', '［': '］', '【': '】'})
 ///     force (Optional[set[str]]): a set of terminal characters, those ignore parentheses (Default: {})
 ///     max_buf_length (Optional[int]): max buffer size (Default: 1000)
