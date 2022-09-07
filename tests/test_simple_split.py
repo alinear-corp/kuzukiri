@@ -34,6 +34,12 @@ class TestSimpleSplit(unittest.TestCase):
                     "改行記号は除去されません。",
                 ]
             ),
+            (
+                "カンマ，は区切られません。",
+                [
+                    "カンマ，は区切られません。",
+                ]
+            ),
         ]
         for example, expected in test_cases:
             actual = self.segmenter.split(example)
