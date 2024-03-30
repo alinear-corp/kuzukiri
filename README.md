@@ -23,7 +23,7 @@ pip install kuzukiri
 
 ```bash
 pip install setuptools-rust
-python setup.py install
+python -m pip install .
 ```
 
 ## Usage
