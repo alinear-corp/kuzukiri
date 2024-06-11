@@ -10,7 +10,7 @@ setup(
     rust_extensions=[RustExtension("kuzukiri.kuzukiri", binding=Binding.PyO3)],
     packages=["kuzukiri"],
     zip_safe=False,
-    classfiers=[
+    classifiers=[
         "Development Status :: 4 - Beta",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: Japanese",
