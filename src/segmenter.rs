@@ -64,18 +64,28 @@ impl Segmenter {
             buf.push(c);
 
             if let Some(t) = self.parentheses.get(&c) {
+                // open parentheses
                 waiting_stack.push(t.clone());
-            } else if let Some(d) = waiting_stack.last() {
-                if c == *d {
-                    waiting_stack.pop();
-                } else if self.force.contains(&c) {
+            } else {
+                // normal characters
+
+                if let Some(d) = waiting_stack.last() {
+                    // if the character is inside parentheses
+
+                    if c == *d {
+                        // close parenthesis
+                        waiting_stack.pop();
+                    } else if self.force.contains(&c) {
+                        // force split
+                        sentences.push(buf.into_iter().collect());
+                        buf = vec![];
+                        waiting_stack.clear();
+                    }
+                } else if self.terminals.contains(&c) {
+                    // normal split
                     sentences.push(buf.into_iter().collect());
                     buf = vec![];
-                    waiting_stack.clear();
                 }
-            } else if self.terminals.contains(&c) {
-                sentences.push(buf.into_iter().collect());
-                buf = vec![];
             }
 
             if buf.len() >= self.max_buf_length {
