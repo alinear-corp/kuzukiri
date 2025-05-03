@@ -1,2 +1,46 @@
 [build-system]
-requires = ["setuptools", "wheel", "setuptools-rust"]
+requires = ["maturin>=1.8,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "kuzukiri"
+version = "0.2.0"
+authors = [
+    { name = "ALINEAR Corporation" }
+]
+description = "Japanese Text Segmenter for Python written in Rust"
+readme = "README.md"
+license = "MIT"
+keywords=[
+    "NLP", "Natural Language Processing",
+    "Text Segmentation", "Python", "Rust",
+    "Japanese", "Preprocessing",
+    "Text Processing",
+]
+classifiers=[
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: Japanese",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Rust",
+    "Topic :: Software Development :: Pre-processors",
+    "Topic :: Text Processing",
+]
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest==6.2.5",
+    "pdoc3==0.10.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/alinear-corp/kuzukiri"
+Documentation = "https://alinear-corp.github.io/kuzukiri/"
+Repository = "https://github.com/alinear-corp/kuzukiri"
+
+[tool.maturin]
+bindings = "pyo3"
