@@ -20,8 +20,8 @@ pip install kuzukiri
 ### ソースコードからインストールする場合
 
 ```bash
-pip install setuptools-rust
-python setup.py install
+pip install maturin
+maturin build --release
 ```
 
 ## 使い方
