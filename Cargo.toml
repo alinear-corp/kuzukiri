@@ -8,7 +8,7 @@ name = "kuzukiri"
 crate-type = ["cdylib"]
 
 [dependencies]
-unicode-normalization = "0.1.8"
+unicode-normalization = "0.1.24"
 
 [dependencies.pyo3]
 version = "0.24.2"
