@@ -1,5 +1,7 @@
 use std::collections::{HashMap, HashSet};
+
 use pyo3::prelude::*;
+
 use crate::normalizers::{Normalizer, NormalizerPipeline};
 use crate::segmenter::Segmenter;
 
@@ -12,7 +14,6 @@ use crate::segmenter::Segmenter;
 ///     force (Optional[set[str]]): a set of terminal characters, those ignore parentheses (Default: {})
 ///     max_buf_length (Optional[int]): max buffer size (Default: 1000)
 #[pyclass(name="Segmenter")]
-#[pyo3(text_signature="(terminals, parentheses, force, max_buf_length)")]
 pub struct PySegmenter {
     _segmenter: Segmenter,
 }
@@ -20,6 +21,9 @@ pub struct PySegmenter {
 #[pymethods]
 impl PySegmenter {
     #[new]
+    #[pyo3(
+        signature=(terminals=None, parentheses=None, force=None, max_buf_length=Some(1000))
+    )]
     fn new(
         terminals: Option<HashSet<char>>,
         parentheses: Option<HashMap<char, char>>,
@@ -42,7 +46,7 @@ impl PySegmenter {
     ///     text (str) : target text
     /// Returns:
     ///     List[str] : list of segmented texts
-    #[pyo3(text_signature="(self, text)")]
+    #[pyo3(text_signature="($self, text)")]
     fn split(&self, text: String) -> Vec<String> {
         self._segmenter.split(text)
     }
@@ -55,7 +59,7 @@ impl PySegmenter {
     ///     text (str) : target text
     /// Returns:
     ///     List[str] : list of segmented texts
-    #[pyo3(text_signature="(self, text)")]
+    #[pyo3(text_signature="($self, text)")]
     fn split_with_norm(&self, text: String) -> Vec<String> {
         let sentences = self._segmenter.split(text);
         let mut normalized: Vec<String> = Vec::with_capacity(sentences.len());
