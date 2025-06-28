@@ -21,7 +21,9 @@ pub struct PySegmenter {
 #[pymethods]
 impl PySegmenter {
     #[new]
-    #[pyo3(text_signature="(terminals, parentheses, force, max_buf_length)")]
+    #[pyo3(
+        signature=(terminals=None, parentheses=None, force=None, max_buf_length=Some(1000))
+    )]
     fn new(
         terminals: Option<HashSet<char>>,
         parentheses: Option<HashMap<char, char>>,
