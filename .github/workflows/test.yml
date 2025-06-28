@@ -25,5 +25,9 @@ jobs:
           pip install pytest
           pip install -r requirements-dev.txt
 
+      - name: Install kuzukiri
+        run: |
+          python setup.py install
+
       - name: Run tests
         run: pytest
